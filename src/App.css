@@ -1,0 +1,517 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+body {
+  height: 100vh;
+  width: 100vw;
+ 
+  overflow: hidden;
+}
+.App {
+  background-image: url("./assets/1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-origin: border-box;
+  height: 100vh;
+  width: 100vw;
+}
+.Thunderstorm {
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-origin: border-box;
+  background-image: url("./assets/damon-lam-n8mPHmv0gYQ-unsplash.jpg");
+}
+.Drizzle {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-origin: border-box;
+  background-image: url("./assets/geetanjal-khanna-8CwoHpZe3qE-unsplash.jpg");
+}
+.Rain {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-origin: border-box;
+  background-image: url("./assets/e229c191674627.5e38448ccdbd7.jpg");
+}
+.Snow {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-origin: border-box;
+  background-image: url("./assets/snow.jpg");
+}
+.Mist {
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-origin: border-box;
+  background-image: url("./assets/mist.jpg");
+}
+.Clouds {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("./assets/cloudy.jpg");
+}
+.Clear {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-origin: border-box;
+  background-image: url("./assets/1.jpg");
+}
+.top-box {
+  height: 20vh;
+  text-align: center;
+  position: relative;
+}
+.search-container {
+  height: 10vh;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+}
+#searchbar {
+  max-height: 7vh;
+  min-height: 5vh;
+  padding: 10px;
+  width: 90%;
+  border-radius: 15px;
+  border: none;
+  color: #000;
+}
+
+#searchbar:focus {
+  outline: none;
+  font-weight: 600;
+}
+
+.links {
+  padding: 10px;
+  text-align: center;
+  font-size: 1em;
+}
+
+.simpleLink {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.advancedLink {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.toggled {
+  text-decoration: none;
+  color: #000;
+  padding: 10px;
+  animation-name: changeColor;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes changeColor {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgb(255, 255, 255);
+  }
+}
+
+.noSelect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  background: rgba(0, 0, 0, 0.507);
+  color: rgb(224, 223, 223);
+}
+
+.photobg-box {
+  height: 40vh;
+  width: 100vw;
+  
+}
+
+.advanced-photobg-box {
+  height: 40vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.advanced-photobg-box::-webkit-scrollbar {
+  display: none;
+}
+
+.wavy-thing{
+  height: 5vh;
+  width: 100vw;
+  position: relative;
+}
+
+
+/* This code was copied from codepen */
+
+.editorial {
+  display: block;
+  width: 100%;
+  height: 5vh;
+  max-height: 5vh;
+  margin: 0;
+  z-index: 5;
+  float: left;
+}
+
+.parallax1 > use {
+  animation: move-forever1 10s linear infinite;
+  &:nth-child(1) {
+    animation-delay: -2s;
+  }
+}
+.parallax2 > use {
+  animation: move-forever2 8s linear infinite;
+  &:nth-child(1) {
+    animation-delay: -2s;
+  }
+}
+.parallax3 > use {
+  animation: move-forever3 6s linear infinite;
+  &:nth-child(1) {
+    animation-delay: -2s;
+  }
+}
+.parallax4 > use {
+  animation: move-forever4 4s linear infinite;
+  &:nth-child(1) {
+    animation-delay: -2s;
+  }
+}
+@keyframes move-forever1 {
+  0% {
+    transform: translate(85px, 0%);
+  }
+  100% {
+    transform: translate(-90px, 0%);
+  }
+}
+@keyframes move-forever2 {
+  0% {
+    transform: translate(-90px, 0%);
+  }
+  100% {
+    transform: translate(85px, 0%);
+  }
+}
+@keyframes move-forever3 {
+  0% {
+    transform: translate(85px, 0%);
+  }
+  100% {
+    transform: translate(-90px, 0%);
+  }
+}
+@keyframes move-forever4 {
+  0% {
+    transform: translate(-90px, 0%);
+  }
+  100% {
+    transform: translate(85px, 0%);
+  }
+}
+
+
+/* End of copied code */
+
+
+
+.weather-container{
+  width: 100%;
+  height: 35vh;
+  max-height: 35vh;
+  background: #fff;
+ 
+}
+
+
+.weather-container .weather-wrapper{
+
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.weather-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.location-box{
+  margin-top: 10px;
+  width: 100vw;
+  min-height: 10vh;
+  text-align: center;
+}
+
+.location-box .location{
+background: rgba(219, 218, 218, 0.575);
+  padding: 10px;
+  width: 50vw;
+  margin: 0 auto;
+  border-radius: 15px;
+  font-size: 1.3em;
+
+  font-weight: 500;
+  text-align: center;
+}
+
+.weatherimg-box{
+  width: 100vw;
+  position: relative;
+  min-height: 30vh;
+  height: 100%;
+  
+}
+
+.weatherimg-box .weather-icon{
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  height: 20vh;
+  max-height: 100px;
+  background: rgba(139, 138, 138, 0.404);
+  border-radius: 15px;
+}
+
+.weather-box{
+  text-align: center;
+  margin: 0 auto;
+/*  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  width: 80vw;
+  height:100%;
+  padding: 10px;
+}
+
+.weather-box .temp{
+  font-size: 3em;
+  padding: 10px;
+}
+
+.weather-box .weather{
+  color: rgb(116, 114, 114);
+  font-size: 1.5em;
+}
+
+.weather-box .weatherdesc{
+  color: rgb(116, 114, 114);
+  font-size: 0.8em;
+}
+
+.world-time{
+  padding: 10px;
+  text-align: center;
+}
+
+.world-time .time{
+  color: rgb(116, 114, 114);
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.world-time .date{
+  color: rgb(116, 114, 114);
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.icon-set {
+  width: 100vw;
+  padding: 15px;
+  list-style: none;
+  text-align: center;
+}
+
+.icon-set li{
+  display: inline-block;
+  padding: 10px;
+  background: rgba(219, 218, 218, 0.575);
+  border-radius: 15px;
+  margin: 5px;
+  border: #000 solid 1px;
+  -webkit-tap-highlight-color: transparent;
+width: 5em;
+position: relative;
+}
+.icon-set li:hover{
+  
+  background: rgb(255, 255, 255);
+  
+}
+
+.icon-set li path{
+  color: #000;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.detail-box{
+  color: rgb(80, 79, 79);
+  text-align: left;
+  font-size: 0.9em;
+  line-height: 2em;
+  font-weight: 300;
+}
+
+.weather-data{
+  font-weight: 800;
+  color: #000;
+  font-size: 1em;
+}
+
+
+
+
+/* 
+.back-wrapper{
+  z-index: 5;
+}
+
+.front-wrapper{
+  z-index: 1000;
+  position: relative;
+}
+
+.effect-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 65vh;
+}
+
+.clouds{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 65vh;
+  background: url('./assets/effects/cloud.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: cloud-animate 200s linear infinite;
+  opacity: 0.7;
+  
+}
+
+@keyframes cloud-animate{
+  0%{
+    background-position: 0px;
+  }
+  100%{
+    background-position: -5440px;
+  }
+}
+
+
+ */
+
+
+
+
+
+
+
+@media only screen and (max-width: 320px) {
+
+  body { 
+     font-size: 14px; 
+  }
+  
+
+
+}
+
+@media screen and (max-width: 375px) and (min-width: 321px) {
+
+  body { 
+     font-size: 15px; 
+  }
+   
+
+
+}
+
+@media screen and (max-width: 425px) and (min-width: 376px) {
+
+  body { 
+     font-size: 16px; 
+  }
+ 
+  
+}
+
+@media screen and (max-width: 768px) and (min-width: 426px) {
+
+  body { 
+     font-size: 16px; 
+  }
+ 
+ 
+}
+
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+
+  body { 
+     font-size: 18px; 
+  }
+
+ 
+}
+
+@media screen and (max-width: 1440px) and (min-width: 1025px) {
+
+  body { 
+     font-size: 20px; 
+  }
+
+}
+
+@media screen and (max-width: 2560px) and (min-width: 1441px) {
+
+  body { 
+     font-size: 25px; 
+  }
+
+}
