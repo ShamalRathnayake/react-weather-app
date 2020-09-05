@@ -1,183 +1,309 @@
-import React, { useState, useEffect } from 'react'
-import Search from './components/Search'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import SimpleWeather from './components/SimpleWeather'
-import AdvancedWeather from './components/AdvancedWeather'
-import { Link } from 'react-router-dom'
-import './App.css'
-const dotenv = require('dotenv').config()
+import React, { useEffect } from "react";
+import Grid from "@material-ui/core/Grid";
+import "./App.css";
+import Search from "./components/Search";
+import Axios from "axios";
+import { useState } from "react";
+import Loader from "./components/Loader";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
-function App () {
-  const api_key = process.env.REACT_APP_API_KEY
+const dotenv = require("dotenv").config();
+const api_key = process.env.REACT_APP_API_KEY;
+
+function App() {
+  const [lat, setlat] = useState("");
+  const [long, setlong] = useState("");
+  const [weather, setweather] = useState({});
+  const [keyword, setkeyword] = useState("");
+  const [expand, setexpand] = useState(false);
+
+  const setPosition = (lat, long) => {
+    setlat(lat);
+    setlong(long);
+  };
+
+  const getWeather = () => {
+    if (lat === "" || long === "") {
+      async function fetchData() {
+        let result = await Axios.get(
+          `https://api.openweathermap.org/data/2.5/weather?q=Colombo,LK&units=metric&APPID=${api_key}`
+        );
+        setweather(result);
+      }
+
+      fetchData();
+    } else {
+      async function fetchData() {
+        let result = await Axios.get(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lat}&units=metric&APPID=${api_key}`
+        );
+        setweather(result);
+      }
+
+      fetchData();
+    }
+  };
+
+  const search = (e) => {
+    if (e.key === "Enter") {
+      if (keyword !== "" || keyword !== null) {
+        async function fetchData() {
+          let result = await Axios.get(
+            `https://api.openweathermap.org/data/2.5/weather?q=${keyword}&units=metric&APPID=${api_key}`
+          );
+          setweather(result);
+          setkeyword("");
+        }
+
+        fetchData();
+      }
+    }
+  };
 
   useEffect(() => {
-
-    /* 
-    getLocation()
-    function getLocation () {
-      if (navigator.geolocation) {
-        return navigator.geolocation.getCurrentPosition(showPosition)
-      } else {
-        alert('Please allow Location Access')
-      }
-    }
-
-    function showPosition (position) {
-      console.log(
-        'Latitude: ' +
-          position.coords.latitude +
-          '    Longitude: ' +
-          position.coords.longitude
-      )
-      
-      if (position.coords.latitude && position.coords.longitude) {
-    
-        fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&APPID=${api_key}`
-        )
-          .then(res => res.json())
-          .then(result => {
-            setWeather(result)
-            setQuery('')
-            console.log(result)
-          })
-      }
-    } */
-
-    /* Not Working On Mobile But Works on PC*/
-    
-
-    if (window.location.pathname === '/') {
-      setSimpleToggle(true)
-    } else {
-      setSimpleToggle(false)
-    }
-
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=Colombo,LK&units=metric&APPID=${api_key}`
-    )
-      .then(res => res.json())
-      .then(result => {
-        setWeather(result)
-        setQuery('')  
-        
-      })
-  }, [])
-
-  const [query, setQuery] = useState('')
-  const [weather, setWeather] = useState({})
-  const [simpleToggle, setSimpleToggle] = useState()
-
-
-
-
-
-  const search = e => {
-    if (e.key === 'Enter') {
-      fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&APPID=${api_key}`
-      )
-        .then(res => res.json())
-        .then(result => {
-          setWeather(result)
-          setQuery('')
-        })
-    }
-  }
-
-  const weatherType = () => {
-    if (weather.weather[0].id.toString().startsWith('2')) {
-      return 'Thunderstorm'
-    } else if (weather.weather[0].id.toString().startsWith('3')) {
-      return 'Drizzle'
-    } else if (weather.weather[0].id.toString().startsWith('5')) {
-      return 'Rain'
-    } else if (weather.weather[0].id.toString().startsWith('6')) {
-      return 'Snow'
-    } else if (weather.weather[0].id.toString().startsWith('7')) {
-      return 'Mist'
-    } else if (
-      weather.weather[0].id.toString().startsWith('8') &&
-      weather.weather[0].id !== 800
-    ) {
-      return 'Clouds'
-    } else if (weather.weather[0].toString().id === 800) {
-      return 'Clear'
-    } else {
-      return 'App'
-    }
-  }
-
-  
+    navigator.geolocation.getCurrentPosition(setPosition);
+    getWeather();
+  }, []);
 
   return (
-    <div className={typeof weather.main != 'undefined' ? ("App " +weatherType()) : 'App'}>
-      {/* <div className="back-wrapper">
-      <div className="effect-container">
-        <div className={typeof weather.main != 'undefined' ? weatherType().toLowerCase() : ''}></div>
-      </div>
-      </div> 
-      <div className="front-wrapper">*/}
-      <Router>
-        <div className='top-box'>
-         
-          <Search query={query} setQuery={setQuery} search={search} />
-          <div className='links'>
-            <Link
-              className={
-                simpleToggle === true
-                  ? 'simpleLink toggled'
-                  : 'simpleLink noSelect'
-              }
-              to='/'
-              onClick={e => {
-                setSimpleToggle(true)
-              }}
-            >
-              Simple
-            </Link>
-            <Link
-              className={
-                simpleToggle === false
-                  ? 'advancedLink toggled'
-                  : 'advancedLink noSelect'
-              }
-              to='/advanced'
-              onClick={e => {
-                setSimpleToggle(false)
-              }}
-            >
-              Advanced
-            </Link>
-          </div>
-        </div>
-        {typeof weather.main != 'undefined' ? (
-          weather.cod === 200 ? (
-            <React.Fragment>
-              <Route
-                exact
-                path='/'
-                render={props => <SimpleWeather weather={weather} />}
+    <div className="App">
+      {typeof weather.data !== "undefined" ? (
+        <>
+          <Grid
+            container
+            direction="row"
+            justify="flex-start"
+            alignItems="flex-start"
+            className="App__Wrapper"
+          >
+            <Grid item xs={12} className="App__Top__Container">
+              <Search
+                keyword={keyword}
+                setkeyword={setkeyword}
+                search={search}
               />
-              <Route
-                path='/advanced'
-                render={props => <AdvancedWeather weather={weather}/>}
+              <div className="App__Top__Container__Location">
+                {weather.data.name}, {weather.data.sys.country}
+              </div>
+
+              <img
+                src={`http://openweathermap.org/img/wn/${weather.data.weather[0].icon}@2x.png`}
+                alt=""
+                className="App__Top__Container__WeatherBox__Image"
               />
-            </React.Fragment>
-          ) : (
-            ''
-          )
-        ) : (
-          <div className='location-box'>
-            <div className='location'>
-              <div>City not Available</div>
-            </div>
+
+              <div className="App__Top__Container__Wave">
+                {/* This code was copied from codepen */}
+                {/* link : https://codepen.io/cmdw/pen/vQqzyB */}
+
+                <svg
+                  className="editorial"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  viewBox="0 24 150 28 "
+                  preserveAspectRatio="none"
+                >
+                  <defs>
+                    <path
+                      id="gentle-wave"
+                      d="M-160 44c30 0 
+    58-18 88-18s
+    58 18 88 18 
+    58-18 88-18 
+    58 18 88 18
+    v44h-352z"
+                    />
+                  </defs>
+                  <g className="parallax1">
+                    <use
+                      xlinkHref="#gentle-wave"
+                      x="50"
+                      y="3"
+                      fill="rgba(255, 255, 255, 0.5)"
+                    />
+                  </g>
+                  <g className="parallax2">
+                    <use
+                      xlinkHref="#gentle-wave"
+                      x="50"
+                      y="0"
+                      fill="rgba(255, 255, 255, 0.5)"
+                    />
+                  </g>
+                  <g className="parallax3">
+                    <use
+                      xlinkHref="#gentle-wave"
+                      x="50"
+                      y="9"
+                      fill="rgba(255, 255, 255, 0.5)"
+                    />
+                  </g>
+                  <g className="parallax4">
+                    <use
+                      xlinkHref="#gentle-wave"
+                      x="50"
+                      y="6"
+                      fill="rgba(255, 255, 255, 0.5)"
+                    />
+                  </g>
+                </svg>
+
+                {/* End of copied code */}
+              </div>
+            </Grid>
+            <Grid item xs={12} className="App__Bottom__Container">
+              {console.log(weather)}
+              <div className="App__Bottom__Container__Box">
+                <div className="App__Bottom__Container__Temp">
+                  {Math.round(weather.data.main.temp)}°C
+                </div>
+                <div className="App__Bottom__Container__Weather">
+                  {weather.data.weather[0].main}
+                </div>
+                <p className="App__Bottom__Container__WeatherDesc">
+                  {weather.data.weather[0].description}
+                </p>
+              </div>
+            </Grid>
+          </Grid>
+          <div
+            className={
+              expand ? "App__Detail__Page Expand" : "App__Detail__Page"
+            }
+            onClick={(e) => setexpand(!expand)}
+          >
+            {expand ? (
+              <Grid
+                container
+                direction="row"
+                justify="flex-start"
+                alignItems="center"
+              >
+                <Grid item>
+                  <ul className="App__Detail__Page__Box">
+                    <li>
+                      Country :{" "}
+                      <span className="weather-data">
+                        {weather.data.sys.country}
+                      </span>
+                    </li>
+
+                    <li>
+                      City :
+                      <span className="weather-data"> {weather.data.name}</span>
+                    </li>
+
+                    <li>
+                      Lattitude :{" "}
+                      <span className="weather-data">
+                        {weather.data.coord.lat}
+                      </span>
+                    </li>
+
+                    <li>
+                      Longitude :{" "}
+                      <span className="weather-data">
+                        {weather.data.coord.lon}
+                      </span>
+                    </li>
+
+                    <li>
+                      Sunrise :{" "}
+                      <span className="weather-data">
+                        {weather.data.sys.sunrise.toString()}
+                      </span>
+                    </li>
+
+                    <li>
+                      Sunset :{" "}
+                      <span className="weather-data">
+                        {weather.data.sys.sunset.toString()}
+                      </span>
+                    </li>
+                    <li>
+                      Cloud Coverage :{" "}
+                      <span className="weather-data">
+                        {weather.data.clouds.all} %
+                      </span>
+                    </li>
+                    <li>
+                      Temperature :{" "}
+                      <span className="weather-data">
+                        {weather.data.main.temp} °C
+                      </span>
+                    </li>
+
+                    <li>
+                      Max Temperature :{" "}
+                      <span className="weather-data">
+                        {weather.data.main.temp_max} °C
+                      </span>
+                    </li>
+
+                    <li>
+                      Min Temperature :{" "}
+                      <span className="weather-data">
+                        {weather.data.main.temp_min} °C
+                      </span>
+                    </li>
+
+                    <li>
+                      Feels Like :{" "}
+                      <span className="weather-data">
+                        {weather.data.main.feels_like} °C
+                      </span>
+                    </li>
+                    <li>
+                      Humidity :{" "}
+                      <span className="weather-data">
+                        {weather.data.main.humidity} %
+                      </span>
+                    </li>
+                    <li>
+                      Pressure :{" "}
+                      <span className="weather-data">
+                        {weather.data.main.pressure} hPa
+                      </span>
+                    </li>
+                    <li>
+                      Weather Condition :{" "}
+                      <span className="weather-data">
+                        {weather.data.weather[0].main}
+                      </span>
+                    </li>
+
+                    <li>
+                      Weather Description :
+                      <span className="weather-data">
+                        {weather.data.weather[0].description}
+                      </span>
+                    </li>
+                    <li>
+                      Wind Speed :{" "}
+                      <span className="weather-data">
+                        {weather.data.wind.speed} m/s
+                      </span>
+                    </li>
+
+                    <li>
+                      Wind Direction :{" "}
+                      <span className="weather-data">
+                        {weather.data.wind.deg} deg
+                      </span>
+                    </li>
+                  </ul>
+                </Grid>
+              </Grid>
+            ) : (
+              <MoreHorizIcon />
+            )}
           </div>
-        )}
-      </Router>
+        </>
+      ) : (
+        <Loader />
+      )}
     </div>
-    /* </div> */
-  )
+  );
 }
 
-export default App
+export default App;

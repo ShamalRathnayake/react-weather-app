@@ -1,0 +1,23 @@
+.MuiInputBase-input {
+  color: #fff !important;
+}
+
+.MuiInputBase-root {
+  border-color: #fff !important;
+}
+
+.PrivateNotchedOutline-legendLabelled-3 {
+  color: #fff !important;
+}
+
+.MuiFormLabel-root {
+  color: #fff !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.MuiOutlinedInput-root:hover {
+  border-color: rgba(255, 255, 255, 1) !important;
+}
