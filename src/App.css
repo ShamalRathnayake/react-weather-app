@@ -10,184 +10,105 @@
   min-height: 400px;
   min-width: 320px;
   overflow: hidden;
+  padding: 20px;
   font-family: "Montserrat", sans-serif;
-}
-
-.App__Wrapper {
-  height: 100%;
-  width: 100%;
-}
-
-.App__Top__Container {
-  height: 50%;
-  width: 100%;
-
-  padding: 10px;
-  position: relative;
-
-  background: #141e30;
-  background: -webkit-linear-gradient(to right, #243b55, #141e30);
-  background: linear-gradient(to right, #243b55, #141e30);
-}
-
-.App__Bottom__Container {
-  height: 50%;
-  width: 100%;
-  background: rgb(255, 255, 255);
-  padding: 10px;
-  position: relative;
-}
-
-/* This code was copied from codepen */
-
-.editorial {
-  display: block;
-  width: 100%;
-  height: 5vh;
-  max-height: 5vh;
-  margin: 0;
-  z-index: 5;
-  float: left;
-}
-
-.parallax1 > use {
-  animation: move-forever1 10s linear infinite;
-  &:nth-child(1) {
-    animation-delay: -2s;
-  }
-}
-.parallax2 > use {
-  animation: move-forever2 8s linear infinite;
-  &:nth-child(1) {
-    animation-delay: -2s;
-  }
-}
-.parallax3 > use {
-  animation: move-forever3 6s linear infinite;
-  &:nth-child(1) {
-    animation-delay: -2s;
-  }
-}
-.parallax4 > use {
-  animation: move-forever4 4s linear infinite;
-  &:nth-child(1) {
-    animation-delay: -2s;
-  }
-}
-@keyframes move-forever1 {
-  0% {
-    transform: translate(85px, 0%);
-  }
-  100% {
-    transform: translate(-90px, 0%);
-  }
-}
-@keyframes move-forever2 {
-  0% {
-    transform: translate(-90px, 0%);
-  }
-  100% {
-    transform: translate(85px, 0%);
-  }
-}
-@keyframes move-forever3 {
-  0% {
-    transform: translate(85px, 0%);
-  }
-  100% {
-    transform: translate(-90px, 0%);
-  }
-}
-@keyframes move-forever4 {
-  0% {
-    transform: translate(-90px, 0%);
-  }
-  100% {
-    transform: translate(85px, 0%);
-  }
-}
-
-/* End of copied code */
-
-.App__Top__Container__Location {
   color: #fff;
-  text-align: center;
-  padding: 15px;
-  font-weight: 700;
+  background: #000428; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #01437c,
+    #000428
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #01437c,
+    #000428
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.App__Top__Container__WeatherBox__Image {
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.App__Top__Container__Wave {
-  position: absolute;
-  bottom: 0%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-}
-
-.App__Bottom__Container__Box {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.App__Bottom__Container__Temp {
+.App__country__name {
+  margin: 10px;
   padding: 10px;
   text-align: center;
-  font-size: 3rem;
-  color: rgb(63, 61, 61);
-  font-weight: 800;
+  font-size: 1.2rem;
+  color: #fff;
 }
 
-.App__Bottom__Container__Weather {
+.App__weather__box {
+  width: fit-content;
+  margin: 0 auto;
+  background: rgba(211, 210, 210, 0.123);
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.App__weather__mainTemp {
+  padding: 10px;
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+.App_weather__mainWeather {
+  padding: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: rgb(214, 214, 214);
+  font-weight: bold;
+}
+.App_weather__subWeather {
   text-align: center;
   font-size: 1rem;
-  color: rgb(119, 113, 113);
-  font-weight: 800;
+  color: rgb(184, 181, 181);
 }
 
-.App__Bottom__Container__WeatherDesc {
+.App__detail {
+  height: 50%;
+  position: relative;
+  bottom: 0%;
+}
+.App__detail__box {
   text-align: center;
-  font-size: 0.9rem;
-  color: rgb(88, 80, 80);
-  font-weight: 500;
+  font-size: 0.8rem;
+  border-radius: 15px;
+  background: rgba(211, 210, 210, 0.123);
+  min-height: 100px;
+  margin: 10px;
 }
 
-.App__Detail__Page {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  position: fixed;
-  top: 20%;
-  right: 0%;
-  background: #141e30;
-  background: -webkit-linear-gradient(to right, #243b55, #141e30);
-  background: linear-gradient(to right, #243b55, #141e30);
-  z-index: 1;
-  transition: all 0.3s ease-in-out;
-  border: 2px solid #fff;
-  padding: 10px;
-  color: #fff;
+@media only screen and (min-width: 320px) {
+  html {
+    font-size: 16px;
+  }
 }
 
-.Expand {
-  top: 0%;
-  right: 0%;
-  height: 100vh;
-  width: 100vw;
-  border-radius: 0%;
-  background: rgb(31, 31, 31);
-  transition: all 0.3s ease-in-out;
-  border: none;
+@media only screen and (min-width: 375px) {
+  html {
+    font-size: 17px;
+  }
 }
 
-.App__Detail__Page__Box {
-  line-height: 1.4rem;
-  padding: 10px;
+@media only screen and (min-width: 425px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  html {
+    font-size: 22px;
+  }
 }
