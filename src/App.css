@@ -1,100 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: rgb(10, 8, 7);
+  background: -moz-linear-gradient(
+    23deg,
+    rgba(10, 8, 7, 1) 0%,
+    rgba(143, 48, 0, 1) 32%,
+    rgba(36, 91, 119, 1) 58%,
+    rgba(25, 75, 98, 1) 80%,
+    rgba(35, 124, 159, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    23deg,
+    rgba(10, 8, 7, 1) 0%,
+    rgba(143, 48, 0, 1) 32%,
+    rgba(36, 91, 119, 1) 58%,
+    rgba(25, 75, 98, 1) 80%,
+    rgba(35, 124, 159, 1) 100%
+  );
+  background: linear-gradient(
+    23deg,
+    rgba(10, 8, 7, 1) 0%,
+    rgba(143, 48, 0, 1) 32%,
+    rgba(36, 91, 119, 1) 58%,
+    rgba(25, 75, 98, 1) 80%,
+    rgba(35, 124, 159, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0a0807",endColorstr="#237c9f",GradientType=1);
 }
 
 .App {
   height: 100vh;
   width: 100vw;
-  min-height: 400px;
+  min-height: 450px;
   min-width: 320px;
   overflow: hidden;
-  padding: 20px;
-  font-family: "Montserrat", sans-serif;
+  padding: 50px;
   color: #fff;
-  background: #000428; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to bottom,
-    #01437c,
-    #000428
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to bottom,
-    #01437c,
-    #000428
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  backdrop-filter: blur(100px);
 }
 
-.App__country__name {
-  margin: 10px;
-  padding: 10px;
-  text-align: center;
-  font-size: 1.2rem;
-  color: #fff;
+.main-card {
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 }
 
-.App__weather__box {
-  width: fit-content;
-  margin: 0 auto;
-  background: rgba(211, 210, 210, 0.123);
-  border-radius: 15px;
-  padding: 10px;
+.cloudy {
+  background-image: url(../src//assets/clouds.jpg);
 }
 
-.App__weather__mainTemp {
-  padding: 10px;
-  text-align: center;
-  font-size: 2rem;
-  color: #fff;
-  font-weight: bold;
+.rain {
+  background-image: url(../src//assets/rain.jpg);
 }
 
-.App_weather__mainWeather {
-  padding: 10px;
-  text-align: center;
-  font-size: 1.2rem;
-  color: rgb(214, 214, 214);
-  font-weight: bold;
-}
-.App_weather__subWeather {
-  text-align: center;
-  font-size: 1rem;
-  color: rgb(184, 181, 181);
+.clear {
+  background-image: url(../src/assets/clear.jpg);
 }
 
-.App__detail {
-  height: 50%;
-  position: relative;
-  bottom: 0%;
-}
-.App__detail__box {
-  text-align: center;
-  font-size: 0.8rem;
-  border-radius: 15px;
-  background: rgba(211, 210, 210, 0.123);
-  min-height: 100px;
-  margin: 10px;
+.weather-display {
+  height: calc(100vh - 100px);
+  width: 100%;
 }
 
-@media only screen and (min-width: 320px) {
-  html {
-    font-size: 16px;
-  }
+.city-display {
+  height: calc(100vh - 100px);
+  width: 100%;
 }
 
-@media only screen and (min-width: 375px) {
-  html {
-    font-size: 17px;
-  }
+.loader {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
-@media only screen and (min-width: 425px) {
+.city-display-mobile {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+@media only screen and (max-width: 599px) {
   html {
     font-size: 18px;
   }
+  .App {
+    padding: 0;
+  }
+  .main-card {
+    border-radius: 0;
+  }
+  .city-display {
+    display: none;
+  }
+  .city-display-mobile {
+    display: block;
+  }
 }
-
 @media only screen and (min-width: 768px) {
   html {
     font-size: 18px;
