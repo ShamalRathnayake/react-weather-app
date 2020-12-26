@@ -1,0 +1,19 @@
+.clusterMarker {
+  min-height: 60px;
+  min-width: 60px;
+  background-size: cover;
+  cursor: pointer;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 60px;
+  padding: 5px;
+}
+
+.zoomOutIcon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.308);
+}

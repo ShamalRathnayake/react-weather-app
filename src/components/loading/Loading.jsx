@@ -1,16 +1,8 @@
 import React from 'react'
 import { RingLoader } from 'react-spinners';
 import { css } from "@emotion/core";
+import './loading.css'
 
-const style = {
-
-    loading: {
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "Translate(-50%, -50%)"
-    }
-};
 
 const override = css`
   display: block;
@@ -19,14 +11,13 @@ const override = css`
 `;
 
 const Loading = () => {
-
     return (
-        <div style={style.loading}>
+        <div className="loading">
             <div className="sweet-loading">
                 <RingLoader
                     css={override}
                     size={50}
-                    color={"#7ce5f9"}
+                    color={"#6eb1f4"}
                     loading
                 />
             </div>

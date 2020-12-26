@@ -1,0 +1,10 @@
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: Translate(-50%, -50%);
+}
+
+.sweet-loading div {
+  opacity: 0.9;
+}
