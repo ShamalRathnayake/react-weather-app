@@ -10,10 +10,16 @@
   padding: 5px;
 }
 
-.zoomOutIcon {
+#zoomOutIcon {
   position: absolute;
   top: 5px;
   right: 5px;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.308);
+}
+
+.mapContainer {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
 }

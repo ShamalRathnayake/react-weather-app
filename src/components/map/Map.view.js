@@ -30,7 +30,8 @@ const MapView = ({ weather, fetchWeatherData }) => {
 
 
     return (
-        <>
+        <div className="mapContainer">
+
             <MapGL
                 style={{ height: "100vh", width: "100vw" }}
                 mapStyle='mapbox://styles/zomb101/ckiwvhur456g519mhu60phubp'
@@ -41,6 +42,9 @@ const MapView = ({ weather, fetchWeatherData }) => {
                 viewportChangeMethod="easeTo"
                 dragRotate={false}
             >
+                <IconButton aria-label="zoom out" onClick={() => mapZoomOut()} id="zoomOutIcon">
+                    <ZoomOutMapIcon />
+                </IconButton>
                 <GeolocateControl
                     position='bottom-right'
                     showUserLocation={false}
@@ -98,10 +102,8 @@ const MapView = ({ weather, fetchWeatherData }) => {
             <Suspense fallback={<Loading />}>
                 <BottomDrawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} weather={weather} />
             </Suspense>
-            <IconButton aria-label="zoom out" onClick={() => mapZoomOut()} className="zoomOutIcon">
-                <ZoomOutMapIcon />
-            </IconButton>
-        </>
+
+        </div>
     )
 }
 

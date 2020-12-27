@@ -42,20 +42,22 @@ const BottomDrawer = ({ openDrawer, setOpenDrawer, weather }) => {
                         justify="center"
                         alignItems="center"
                         spacing={3}>
-                        <Grid item sm={3}>
-                            <Card className="infoCard">
-                                <div className="infoBox">
-                                    <PublicIcon src={coldTemp} className="cardIcon" fontSize="large" />
-                                    <div className="cardInfoContainer">
-                                        <p className="cardInfoTitle">Location</p>
-                                        <p className="cardInfoContent">{weather.name} , {weather.sys.country}</p>
+                        {weather.name && weather.sys.country &&
+                            <Grid item sm={4}>
+                                <Card className="infoCard">
+                                    <div className="infoBox">
+                                        <PublicIcon src={coldTemp} className="cardIcon" fontSize="large" />
+                                        <div className="cardInfoContainer">
+                                            <p className="cardInfoTitle">Location</p>
+                                            <p className="cardInfoContent">{weather.name} , {weather.sys.country}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </Card>
-                        </Grid>
-                        <Grid item sm={3}>
-                            <Card className="infoCard">
-                                {weather.main.temp_max &&
+                                </Card>
+                            </Grid>
+                        }
+                        {weather.main.temp_max &&
+                            <Grid item sm={4}>
+                                <Card className="infoCard">
                                     <div className="infoBox">
                                         <img src={hotTemp} alt="" className="cardIcon" />
                                         <div className="cardInfoContainer">
@@ -63,12 +65,12 @@ const BottomDrawer = ({ openDrawer, setOpenDrawer, weather }) => {
                                             <p className="cardInfoContent">{weather.main.temp_max} C°</p>
                                         </div>
                                     </div>
-                                }
-                            </Card>
-                        </Grid>
-                        <Grid item sm={3}>
-                            <Card className="infoCard">
-                                {weather.main.temp &&
+                                </Card>
+                            </Grid>
+                        }
+                        {weather.main.temp &&
+                            <Grid item sm={4}>
+                                <Card className="infoCard">
                                     <div className="infoBox">
                                         <img src={temp} alt="" className="cardIcon" />
                                         <div className="cardInfoContainer">
@@ -76,12 +78,12 @@ const BottomDrawer = ({ openDrawer, setOpenDrawer, weather }) => {
                                             <p className="cardInfoContent">{weather.main.temp} C°</p>
                                         </div>
                                     </div>
-                                }
-                            </Card>
-                        </Grid>
-                        <Grid item sm={3}>
-                            <Card className="infoCard">
-                                {weather.main.feels_like &&
+                                </Card>
+                            </Grid>
+                        }
+                        {weather.main.feels_like &&
+                            <Grid item sm={4}>
+                                <Card className="infoCard">
                                     <div className="infoBox">
                                         <img src={temp} alt="" className="cardIcon" />
                                         <div className="cardInfoContainer">
@@ -89,12 +91,12 @@ const BottomDrawer = ({ openDrawer, setOpenDrawer, weather }) => {
                                             <p className="cardInfoContent">{weather.main.feels_like} C°</p>
                                         </div>
                                     </div>
-                                }
-                            </Card>
-                        </Grid>
-                        <Grid item sm={3}>
-                            <Card className="infoCard">
-                                {weather.main.temp_min &&
+                                </Card>
+                            </Grid>
+                        }
+                        {weather.main.temp_min &&
+                            <Grid item sm={4}>
+                                <Card className="infoCard">
                                     <div className="infoBox">
                                         <img src={coldTemp} alt="" className="cardIcon" />
                                         <div className="cardInfoContainer">
@@ -102,27 +104,29 @@ const BottomDrawer = ({ openDrawer, setOpenDrawer, weather }) => {
                                             <p className="cardInfoContent">{weather.main.temp_min} C°</p>
                                         </div>
                                     </div>
-                                }
-                            </Card>
-                        </Grid>
-                        <Grid item sm={3}>
-                            <Card className="infoCard">
-                                {weather.weather.map((weather, index) => {
-                                    return (
-                                        <div className="infoBox" key={index}>
+                                </Card>
+                            </Grid>
+                        }
+
+                        {weather.weather && weather.weather.map((weather, index) => {
+                            return (
+                                <Grid item sm={4} key={index}>
+                                    <Card className="infoCard">
+                                        <div className="infoBox">
                                             <FilterDramaIcon className="cardIcon" fontSize="large" />
                                             <div className="cardInfoContainer">
                                                 <p className="cardInfoTitle">weather</p>
                                                 <p className="cardInfoContent">{weather.description}</p>
                                             </div>
                                         </div>
-                                    )
-                                })}
-                            </Card>
-                        </Grid>
-                        <Grid item sm={3}>
-                            <Card className="infoCard">
-                                {weather.clouds &&
+                                    </Card>
+                                </Grid>
+                            )
+                        })}
+
+                        {weather.clouds &&
+                            <Grid item sm={4}>
+                                <Card className="infoCard">
                                     <div className="infoBox">
                                         <CloudIcon className="cardIcon" fontSize="large" />
                                         <div className="cardInfoContainer">
@@ -130,12 +134,12 @@ const BottomDrawer = ({ openDrawer, setOpenDrawer, weather }) => {
                                             <p className="cardInfoContent">{weather.clouds.all} %</p>
                                         </div>
                                     </div>
-                                }
-                            </Card>
-                        </Grid>
-                        <Grid item sm={3}>
-                            <Card className="infoCard">
-                                {weather.main.humidity &&
+                                </Card>
+                            </Grid>
+                        }
+                        {weather.main.humidity &&
+                            <Grid item sm={4}>
+                                <Card className="infoCard">
                                     <div className="infoBox">
                                         <BlurOnIcon className="cardIcon" fontSize="large" />
                                         <div className="cardInfoContainer">
@@ -143,12 +147,12 @@ const BottomDrawer = ({ openDrawer, setOpenDrawer, weather }) => {
                                             <p className="cardInfoContent">{weather.main.humidity} %</p>
                                         </div>
                                     </div>
-                                }
-                            </Card>
-                        </Grid>
-                        <Grid item sm={3}>
-                            <Card className="infoCard">
-                                {weather.main.grnd_level &&
+                                </Card>
+                            </Grid>
+                        }
+                        {weather.main.grnd_level &&
+                            <Grid item sm={4}>
+                                <Card className="infoCard">
                                     <div className="infoBox">
                                         <GradientIcon className="cardIcon" fontSize="large" />
                                         <div className="cardInfoContainer">
@@ -156,12 +160,12 @@ const BottomDrawer = ({ openDrawer, setOpenDrawer, weather }) => {
                                             <p className="cardInfoContent">{weather.main.grnd_level} hPa</p>
                                         </div>
                                     </div>
-                                }
-                            </Card>
-                        </Grid>
-                        <Grid item sm={3}>
-                            <Card className="infoCard">
-                                {weather.main.pressure &&
+                                </Card>
+                            </Grid>
+                        }
+                        {weather.main.pressure &&
+                            <Grid item sm={4}>
+                                <Card className="infoCard">
                                     <div className="infoBox">
                                         <GradientIcon className="cardIcon" fontSize="large" />
                                         <div className="cardInfoContainer">
@@ -169,12 +173,12 @@ const BottomDrawer = ({ openDrawer, setOpenDrawer, weather }) => {
                                             <p className="cardInfoContent">{weather.main.pressure} hPa</p>
                                         </div>
                                     </div>
-                                }
-                            </Card>
-                        </Grid>
-                        <Grid item sm={3}>
-                            <Card className="infoCard">
-                                {weather.main.sea_level &&
+                                </Card>
+
+                            </Grid>}
+                        {weather.main.sea_level &&
+                            <Grid item sm={4}>
+                                <Card className="infoCard">
                                     <div className="infoBox">
                                         <GradientIcon className="cardIcon" fontSize="large" />
                                         <div className="cardInfoContainer">
@@ -182,12 +186,12 @@ const BottomDrawer = ({ openDrawer, setOpenDrawer, weather }) => {
                                             <p className="cardInfoContent">{weather.main.sea_level} hPa</p>
                                         </div>
                                     </div>
-                                }
-                            </Card>
-                        </Grid>
-                        <Grid item sm={3}>
-                            <Card className="infoCard">
-                                {weather.wind &&
+                                </Card>
+                            </Grid>
+                        }
+                        {weather.wind &&
+                            <Grid item sm={4}>
+                                <Card className="infoCard">
                                     <div className="infoBox">
                                         <WavesIcon className="cardIcon" fontSize="large" />
                                         <div className="cardInfoContainer">
@@ -195,9 +199,9 @@ const BottomDrawer = ({ openDrawer, setOpenDrawer, weather }) => {
                                             <p className="cardInfoContent">{weather.wind.speed} m/s</p>
                                         </div>
                                     </div>
-                                }
-                            </Card>
-                        </Grid>
+                                </Card>
+                            </Grid>
+                        }
                     </Grid>
                 </SlidingPane >
             ) : (
