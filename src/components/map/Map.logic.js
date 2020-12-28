@@ -43,7 +43,7 @@ const MapLogic = ({ fetchWeatherData, mapRef }) => {
 
         setpoints(pointsArr);
 
-        
+
 
 
     }, [])
@@ -83,11 +83,11 @@ const MapLogic = ({ fetchWeatherData, mapRef }) => {
 
     }
 
-    const markerClicked = async (lat, lon) => {
-        await setOpenDrawer(true)
-        await setIsLoading(true)
-        await fetchWeatherData(lat, lon)
-        await setIsLoading(false)
+    const markerClicked = (lat, lon) => {
+        setOpenDrawer(true)
+        setIsLoading(true)
+        fetchWeatherData(lat, lon)
+        setIsLoading(false)
     }
 
 

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useRef} from 'react'
+import React, { lazy, Suspense, useRef } from 'react'
 import MapGL, { GeolocateControl, Marker, NavigationControl } from '@urbica/react-map-gl';
 import MapLogic from './Map.logic';
 import { IconButton } from '@material-ui/core';
@@ -60,7 +60,7 @@ const MapView = ({ weather, fetchWeatherData }) => {
                 />
 
 
-                {clusters.map((cluster, index) => {
+                {clusters.map((cluster) => {
 
 
 

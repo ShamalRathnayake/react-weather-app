@@ -40,8 +40,8 @@
 }
 
 .slide-pane_from_bottom {
-  height: 50vh;
-  margin-top: 50vh;
+  height: 60vh;
+  margin-top: 40vh;
   transform: translateY(100%);
 }
 
