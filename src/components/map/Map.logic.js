@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import useSupercluster from 'use-supercluster';
-import weatherStations from '../city.list.min.json'
+import weatherStations from '../citiesLatLon.minified.json'
 import img1 from '../../assets/m1.png'
 import img2 from '../../assets/m2.png'
 import img3 from '../../assets/m3.png'
@@ -19,6 +19,9 @@ const MapLogic = ({ fetchWeatherData, mapRef }) => {
     const [viewport, setViewport] = useState(initialState);
     const [points, setpoints] = useState([]);
     const [openDrawer, setOpenDrawer] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+
+
 
     useEffect(() => {
 
@@ -32,13 +35,16 @@ const MapLogic = ({ fetchWeatherData, mapRef }) => {
                 },
                 "geometry": {
                     "type": "Point",
-                    "coordinates": [station.coord.lon, station.coord.lat]
+                    "coordinates": [station.lon, station.lat]
                 }
 
             }
         })
 
         setpoints(pointsArr);
+
+        
+
 
     }, [])
 
@@ -77,9 +83,11 @@ const MapLogic = ({ fetchWeatherData, mapRef }) => {
 
     }
 
-    const markerClicked = (lat, lon) => {
-        setOpenDrawer(true)
-        fetchWeatherData(lat, lon)
+    const markerClicked = async (lat, lon) => {
+        await setOpenDrawer(true)
+        await setIsLoading(true)
+        await fetchWeatherData(lat, lon)
+        await setIsLoading(false)
     }
 
 
@@ -113,7 +121,8 @@ const MapLogic = ({ fetchWeatherData, mapRef }) => {
         mapClusterZoom,
         openDrawer,
         setOpenDrawer,
-        mapZoomOut
+        mapZoomOut,
+        isLoading
     }
 }
 

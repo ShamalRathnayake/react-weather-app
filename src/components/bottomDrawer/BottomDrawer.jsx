@@ -13,30 +13,32 @@ import BlurOnIcon from '@material-ui/icons/BlurOn';
 import GradientIcon from '@material-ui/icons/Gradient';
 import WavesIcon from '@material-ui/icons/Waves';
 import CloudIcon from '@material-ui/icons/Cloud';
+import Loading from '../loading/Loading';
 
-const BottomDrawer = ({ openDrawer, setOpenDrawer, weather }) => {
+const BottomDrawer = ({ openDrawer, setOpenDrawer, weather, isLoading }) => {
 
     return (
         <div>
-            {weather.cod === 200 ? (
-                <SlidingPane
-                    isOpen={openDrawer}
-                    title={
-                        <div className="title-container">
-                            <img src={logo} alt="logo" className="title-logo" />
-                            <p className="title-text">Weathera</p>
-                        </div>
-                    }
-                    onRequestClose={() => setOpenDrawer(false)}
-                    closeIcon={
-                        <IconButton aria-label="location" color="secondary" >
-                            <CancelIcon />
-                        </IconButton>
-                    }
-                    from="bottom"
-                    width="100%"
-                    height="200px"
-                >
+
+            <SlidingPane
+                isOpen={openDrawer}
+                title={
+                    <div className="title-container">
+                        <img src={logo} alt="logo" className="title-logo" />
+                        <p className="title-text">Weathera</p>
+                    </div>
+                }
+                onRequestClose={() => setOpenDrawer(false)}
+                closeIcon={
+                    <IconButton aria-label="location" color="secondary" >
+                        <CancelIcon />
+                    </IconButton>
+                }
+                from="bottom"
+                width="100%"
+                height="200px"
+            >{isLoading && <Loading />}
+                {weather.cod === 200 ? (
                     <Grid container
                         direction="row"
                         justify="center"
@@ -202,12 +204,13 @@ const BottomDrawer = ({ openDrawer, setOpenDrawer, weather }) => {
                                 </Card>
                             </Grid>
                         }
-                    </Grid>
-                </SlidingPane >
-            ) : (
-                    ""
-                )
-            }
+                    </Grid>) : (
+                        ""
+                    )}
+
+            </SlidingPane >
+
+
         </div >
     )
 }

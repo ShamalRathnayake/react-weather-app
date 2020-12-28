@@ -1,10 +1,11 @@
-import React, { lazy, Suspense, useRef } from 'react'
+import React, { lazy, Suspense, useRef} from 'react'
 import MapGL, { GeolocateControl, Marker, NavigationControl } from '@urbica/react-map-gl';
 import MapLogic from './Map.logic';
 import { IconButton } from '@material-ui/core';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Loading from '../loading/Loading';
 import ZoomOutMapIcon from '@material-ui/icons/ZoomOutMap';
+
 import('./map.css')
 
 require('dotenv').config()
@@ -25,13 +26,13 @@ const MapView = ({ weather, fetchWeatherData }) => {
         mapClusterZoom,
         openDrawer,
         setOpenDrawer,
-        mapZoomOut
+        mapZoomOut,
+        isLoading
     } = MapLogic({ fetchWeatherData, mapRef });
 
 
     return (
         <div className="mapContainer">
-
             <MapGL
                 style={{ height: "100vh", width: "100vw" }}
                 mapStyle='mapbox://styles/zomb101/ckiwvhur456g519mhu60phubp'
@@ -45,17 +46,23 @@ const MapView = ({ weather, fetchWeatherData }) => {
                 <IconButton aria-label="zoom out" onClick={() => mapZoomOut()} id="zoomOutIcon">
                     <ZoomOutMapIcon />
                 </IconButton>
+
                 <GeolocateControl
                     position='bottom-right'
                     showUserLocation={false}
                     trackUserLocation={false}
+
                 />
                 <NavigationControl
                     showCompass={false}
                     showZoom
                     position='bottom-right'
                 />
-                {clusters.map(cluster => {
+
+
+                {clusters.map((cluster, index) => {
+
+
 
                     const [longitude, latitude] = cluster.geometry.coordinates;
                     const {
@@ -97,10 +104,11 @@ const MapView = ({ weather, fetchWeatherData }) => {
                             </Marker>
                         );
                     }
-                })}
+                })
+                }
             </MapGL>;
             <Suspense fallback={<Loading />}>
-                <BottomDrawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} weather={weather} />
+                <BottomDrawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} weather={weather} isLoading={isLoading} />
             </Suspense>
 
         </div>
